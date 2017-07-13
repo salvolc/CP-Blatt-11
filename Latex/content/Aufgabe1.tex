@@ -1,0 +1,131 @@
+\section*{Aufgabe 1}
+\label{sec:Aufgabe1}
+\subsection*{a) + b)}
+
+Wie zu erkennen ist, sind die Zufallszahlen für den linear kongruenten Zufallszahlengenerators (LKZG) mit den ersten Parametersatz nicht gut nutzbar.
+Dies ist insbesonders an der "glatten" Verteilung in Abb. \ref{i} zu erkennen. 
+Diese sollte im Idealfall leichte Fluktuationen haben, jedoch ist die Periodenlänge des LKZG so klein, dass die Zahlenfolge sich häufig wiederholt.
+Außerdem ist eine Häufung der Zufallszahlen in dem ersten und letzten Bin zu erkennen welche ebenfalls unerwünscht sind.\\
+Abb. \ref{ii} zeigt die Zufallszahlen des LKZG mit dem zweiten Parametersatz. 
+Diese Verteilung zeigt ein besseres Verhalten der Zufallszahlen.
+Die Verteilung ist nicht mehr "glatt" sondern fluktuiert leicht zwischen den Zufallszahlen hin und her.
+Bei genauerem Betrachten fallen jedoch Unstimmigkeiten auf.
+Mit der Annahme von Poisson Verteilungen in den Bins kann die statistische Unsicherheit betrachtet werden (der untere Teil der Plots).
+Auffällig ist hierbei, dass fast alle Werte in einer Standartabweichung zum gemeinsamen Mittelwert liegen.\\
+Die Zufallszahlen des Mersenne Twisters hingegen, welche in Abb. \ref{M} zu sehen ist, verteilen sich leicht stärker gestreut um diesen.
+Bei der Verteilung selbst ergeben sich keine deutlichen Unterschiede, außer die etwas stärkere Fluktuation der Werte.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.9\linewidth]{../Aufg1i.pdf}
+	\caption{Zufallszahlen generiert mit dem ersten linear kongruenten Generators unter der Verwendung des ersten Parametersatzes.}
+	\label{i}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.9\linewidth]{../Aufg1ii.pdf}
+	\caption{Zufallszahlen generiert mit dem ersten linear kongruenten Generators unter der Verwendung des zweiten Parametersatzes.}
+	\label{ii}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.9\linewidth]{../Aufg1M.pdf}
+	\caption{Zufallszahlen generiert mit dem Mersenne Twister 19937.}
+	\label{M}
+\end{figure}
+\FloatBarrier
+\subsection*{c)}
+Die Abbildungen \ref{c1}-\ref{c3} zeigen die Funktion
+\begin{equation*}
+	p(x) = n \, \sin^4{(\pi \, x)}
+\end{equation*}
+sowohl analytisch (in rot) als auch mit Hilfe der Zufallszahlengeneratoren aus a) und dem Neumannschen Rückweisungsverfahren generiert (als Histogramm).
+Wird der LKZG mit dem ersten Parametersatz genutzt, so ergibt sich mit Neumann keine sinnvolle Verteilung für die gesuchte Funktion.
+Dies liegt insbesondere an der Periodenlänge, da so dieselben wenigen diskreten Zufallszahlen wieder und wieder gezogen werden, was nicht ausreicht, um durch die Funktion "durchzusamplen".\\
+Wird der zweite Parametersatz oder der Mersenne Twister genutzt, so ergibt sich eine recht ansehnliche Form der Verteilung, die gut mit der analytischen übereinstimmt.
+Eine Aussage welche dieser beiden besser oder schlechter ist lässt sich ohne weiteres nicht zeigen.
+(Mit $10^6$ Zufallszahlen und extrem großen Binning ergeben sich leichte Tendenzen zum Mersenne Twister als besseren Zufallszahlengenerator s.h. Screenshot bei Zusatzplots)
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1c1.pdf}
+	\caption{Neumann Verfahren für die gesuchte Funktion mit Zufallszahlen generiert mit dem ersten linear kongruenten Generators unter der Verwendung des ersten Parametersatzes.}
+	\label{c1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1c2.pdf}
+	\caption{Neumann Verfahren für die gesuchte Funktion mit Zufallszahlen generiert mit dem ersten linear kongruenten Generators unter der Verwendung des zweiten Parametersatzes.}
+	\label{c2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1c3.pdf}
+	\caption{Neumann Verfahren für die gesuchte Funktion mit Zufallszahlen generiert mit dem Mersenne Twister 19937.}
+	\label{c3}
+\end{figure}
+
+\FloatBarrier
+\subsection*{d)}
+Der 2D Spektraltest wird durchgeführt indem nacheinanderfolgende Glieder der Zufallszahlen gegeneinander aufgetragen werden.
+Der Spektraltest ist dabei ein Test für die Zufälligkeit nacheinanderfolgender Zahlen.
+Ein guter Pseudo Zufallszahlengenerator sollte keine Struktur haben.
+Die kann für den zweiten LKZG und den Mersenne Twister in Abb. \ref{d2} und Abb. \ref{d3} gesehen werden.
+Für einen schlechten Zufallszahlengenerator können Strukturen (im 2D Fall Geraden) gefunden werden.
+Dies ist bei dem ersten LKZG der Fall, wir in Abb. \ref{d1} zu sehen ist.
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1di.png}
+	\caption{2D Spektraltest für den ersten linear kongruenten Generators unter der Verwendung des ersten Parametersatzes. Geplottet werden jeweils nacheinander folgende Zahlen als Paare.}
+	\label{d1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1dii.png}
+	\caption{2D Spektraltest für den ersten linear kongruenten Generators unter der Verwendung des zweiten Parametersatzes. Geplottet werden jeweils nacheinander folgende Zahlen als Paare.}
+	\label{d2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1dM.png}
+	\caption{2D Spektraltest für den Mersenne Twister 19937. Geplottet werden jeweils nacheinander folgende Zahlen als Paare.}
+	\label{d3}
+\end{figure}
+\FloatBarrier
+\subsection*{d)}
+Der 30 Spektraltest wird durchgeführt indem drei nacheinanderfolgende Glieder der Zufallszahlen gegeneinander aufgetragen werden.
+Dieser Test ist analog zum 2D Test.
+Für den Mersenne Twister kann der Spektraltest in Abb. \ref{e3} gesehen werden.
+Bei diesen zeichnet sich keine Struktur ab.
+Bei dem Spektraltest für ersten LKZG in Abb. \ref{e1} und dem zweiten LKZG in Abb. \ref{e2} zeichnen sich jedoch klar Ebenen ab, welches für einen schlechteren Pseudo Zufallszahlengenerator spricht.
+Bei diesem Test zeichnet sich zum ersten Mal der Mersenne Twister deutlich von dem LKZG mit "gut" gewählten Parametern ab.
+Würde die Dimension des Test erhöht, so würden sich ebenfalls für den Mersenne Twister Hyperbenen abzeichnen, für diesen Test hier zeichnet sich dieser als "bester" Zufallszahlengenerator aus.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1ei.png}
+	\caption{3D Spektraltest für den ersten linear kongruenten Generators unter der Verwendung des ersten Parametersatzes. Geplottet werden jeweils nacheinander folgende Zahlen als Tripel.}
+	\label{e1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1eii.png}
+	\caption{3D Spektraltest für den ersten linear kongruenten Generators unter der Verwendung des zweiten Parametersatzes. Geplottet werden jeweils nacheinander folgende Zahlen als Tripel.}
+	\label{e2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width= 0.8\linewidth]{../Aufg1eM.png}
+	\caption{3D Spektraltest für den Mersenne Twister 19937. Geplottet werden jeweils nacheinander folgende Zahlen als Tripel.}
+	\label{e3}
+\end{figure}

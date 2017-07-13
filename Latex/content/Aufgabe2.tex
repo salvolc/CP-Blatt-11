@@ -1,0 +1,123 @@
+\section*{Aufgabe 2}
+\label{sec:Aufgabe2}
+\subsection*{a)}
+Die Abbildung \ref{2a} zeigt Zufallszahlen welche mit dem Box-Muller-Algorithmus gezogen worden sind.
+Diese sind in guter Übereinstimmung mit der analytischen Gaußverteilung.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8 \linewidth]{../Aufgabe2a.pdf}
+	\caption{Zufallszahlen mit dem Box-Muller-Algorithmus und die analytische Form der Gaußverteilung mit $\mu = 0$ und $\sigma = 1$ (in rot).}
+	\label{2a}
+\end{figure}
+
+\subsection*{b)}
+Abbildung \ref{2b} zeigt die Verteilung von aufaddierten Zufallszahlen.
+Die Anzahl an aufaddierten Zahlen folgt dabei
+\begin{equation*}
+	N = \sigma^2 \cdot 12 \,,
+\end{equation*}
+dabei ist $\mu = 0$.
+Mit $\sigma = 1$ ergibt sich somit die Summe von 12 aufaddierten Zufallszahlen.
+Diese Methode wird je nach verlangter Standartabweichung immer aufwendiger und ist somit ineffizienter als andere Methoden.
+Außerdem ist bei einem direkten Vergleich mit dem Box-Muller-Algorithmus in Abb. \ref{2a} zu sehen, dass diese Methode nicht so präzise ist wie seine Konkurrenz, da diese sich mit hoher Summandenzahl erst einer Gaußverteilung annähert.
+Allerdings kann so zunächst die grundlegende Aussage des zentralen Grenzwertsatzes bestätigt werden.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8 \linewidth]{../Aufgabe2b.pdf}
+	\caption{12 Aufaddierte Zufallszahlen und die analytische Form der Gaußverteilung mit $\mu = 0$ und $\sigma = 1$ (in rot).
+	Die Zufallszahlen ergeben aufgrund des zentralen Grenzwertsatzes annähernd eine Gaußverteilung.}
+	\label{2b}
+\end{figure}
+
+\FloatBarrier
+\subsection*{c)}
+Die Abbildung \ref{2c} zeigt die Verteilung der Zufallszahlen erzeugt mit dem Neumannschen Rückweisungsverfahren.
+Dabei wurden die Zufallszahlen gleichverteilt aus einer Fläche gezogen mit\\ 
+$A = {(x,y)|x \in \mathbb{R} \, \text{und} \, 0 < y < \alpha \exp{(-|x|)}}$.
+Die verschiedenen Plots zeigen dies für verschiedene Werte von $\alpha$.
+Zu sehen ist hierbei, dass für kleine $\alpha$ die Fläche zu klein wird und der Gauß nicht vollständig abgesampled werden kann.
+Somit ist klar die Struktur der Exponentialfunktion erkennbar.
+Für $\alpha$ größer $1$ funktioniert das Verfahren zufriedenstellend.
+Insgesamt sollte das $\alpha$ nicht zu hoch gewählt werden.
+Zwar wird so die Fläche größer jedoch sorgt eben jede auch für eine schlechtere Effizienz des Neumannschen Rückweisungsverfahren.
+
+\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=1.5 \linewidth,angle=90]{../Aufgabe2c2.pdf}
+	\caption{Neumannsches Rückweisungsverfahren mit angepasster Fläche, für die Zufallszahlen. Die Skala für $N$ ist normiert und ist ebenso die Achse für die Theoriekurve.}
+	\label{2c}
+\end{figure}
+\FloatBarrier
+
+\subsection*{d)}
+Schritt 0 (Normieren):
+\begin{equation}
+	p(x) = \frac{1}{\pi} \frac{1}{1+x^2}
+	\label{p}
+\end{equation}
+ist bereits normiert, da
+\begin{align*}
+	&\int_{-\infty}^{\infty} \frac{1}{\pi} \frac{1}{1+x^2} dx \\
+	&= \frac{1}{\pi} \left. \mathrm{arctan}(x) \right \vert_{-\infty}^{\infty}\\
+	&= \frac{1}{\pi} \cdot \left(\frac{\pi}{2} + \frac{\pi}{2} \right) = 1
+\end{align*}
+Methode 1 (nach Skript):
+
+Schritt 1 (Invertieren):
+\begin{align*}
+	y &= \frac{1}{\pi} \frac{1}{1+x^2} \\
+	y \pi &= \frac{1}{1+x^2} \\
+	\frac{1}{\pi y} &= 1+x^2 \\
+	x(y) &= \pm \sqrt{\frac{1}{\pi y} - 1} = p^{-1}(y)
+\end{align*}
+
+Schritt 2 (Ableiten):
+\begin{align*}
+	p^{-1}(y)^{'} &= \frac{1}{2} \cdot \frac{1}{\pm \sqrt{\frac{1}{\pi y} - 1}} \cdot (-1) \cdot \frac{1}{\pi y^2}\\
+	p^{-1}(y)^{'} &= \mp \frac{1}{\sqrt{(4\pi y^3-4\pi y^4)}}
+\end{align*}
+
+Schritt 3 (Einsetzen/Ausrechnen):
+Da die vorausgehende Wahrscheinlichkeitsdichte $f(x) = 1$ ist ergibt sich für die gesuchte Verteilung:
+\begin{equation*}
+	\tilde{f}(y) = |p^{-1}(y)^{'}| \quad \text{mit} \quad y \in p([x_1,x_2]),
+\end{equation*}
+da $x$ in $[0,1[$ liegt gilt für $y \in ]0, \frac{1}{\pi}[$.
+Dabei ergibt sich die Verteilung \ref{2d1}, welche allerdings fehlende Werte in der Mitte hat.
+Es ist zu erkennen, dass die funktionelle Form korrekt erscheint für die Seitenbänder.
+Da diese Lücke sehr merkwürdig und nicht wegzubekommen war, hier nun eine Methode (aus SMD), die uns geläufiger ist und auch funktioniert.
+~\\
+~\\
+Methode 2 (nach SMD Vorlesung):\\
+Hierbei sei $z$ die gleichverteilte Zahl aus $[0,1[$.
+Außerdem ist \eqref{p} bereits normiert.
+\\
+Schritt 1 (Integrieren und Gleichsetzten):
+\begin{align*}
+	z &= \frac{1}{\pi} \int_{-\infty}^{x} \frac{1}{1+x^{'^2}} dx^{'}\\
+	z &= \frac{1}{\pi} \left. \mathrm{arctan}(x^{'}) \right \vert_{-\infty}^{x}\\
+	z &= \frac{\mathrm{arctan}(x)}{\pi} + \frac{1}{2} \, .
+\end{align*}
+Schritt 2 (Umformen):
+\begin{align*}
+	z &= \frac{\mathrm{arctan}(x)}{\pi} + \frac{1}{2}\\
+	\left( z- \frac{1}{2} \right) \pi &= \mathrm{arctan}(x)\\
+	x(z) &= \mathrm{tan}\left(\left( z- \frac{1}{2} \right)\pi\right) \, .
+\end{align*}
+Damit ergibt sich die Verteilung aus Abb. \ref{2d2}, welche deutlich besser aussieht und zu der gesuchten Verteilung passt.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8 \linewidth]{../Aufgabe2d.pdf}
+	\caption{Mit der Transformationsmethode aus dem Kierfeld Skript erzeugte Verteilung.}
+	\label{2d1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8 \linewidth]{../Aufgabe2dSMD.pdf}
+	\caption{Mit der Transformationsmethode aus SMD erzeugte Verteilung.}
+	\label{2d2}
+\end{figure}
